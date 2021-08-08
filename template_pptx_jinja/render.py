@@ -45,6 +45,8 @@ class PPTXRendering:
     def _render_shape(self, shape):
         if shape.has_text_frame:
             self._render_text_frame(shape.text_frame)
+        if shape.has_table:
+            self._render_table(shape.table)
         if shape.shape_type == MSO_SHAPE_TYPE.PICTURE:
             self._render_picture(shape)
 
@@ -62,6 +64,13 @@ class PPTXRendering:
     def _render_paragraph(self, paragraph):
         for run in paragraph.runs:
             self._render_run(run)
+
+    def _render_table(self, table):
+        for cell in table.iter_cells():
+            self._render_cell(cell)
+
+    def _render_cell(self, cell):
+        self._render_text_frame(cell.text_frame)
 
     def _render_run(self, run):
         template = self.env.from_string(str(run.text))
