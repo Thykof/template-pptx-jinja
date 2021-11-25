@@ -15,3 +15,9 @@ See the PyPI package at https://pypi.org/project/template-pptx-jinja/0.1.0
 Run
 
     pip install template-pptx-jinja
+
+## Dev
+
+    python3 -m venv env
+    source env/bin/activate
+    pip install -r requirements.txt

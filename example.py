@@ -20,7 +20,8 @@ def main():
             {
                 "name": "production"
             }
-        ]
+        ],
+        "size": [10, 9000]
     }
     pictures = {
         "example/model.jpg": "example/image.jpg"
