@@ -8,7 +8,7 @@ It can also replace picture.
 
 See `example.py` for example.
 
-See the PyPI package at https://pypi.org/project/template-pptx-jinja/0.1.0
+See the PyPI package at https://pypi.org/project/template-pptx-jinja/0.2.0
 
 ## Install
 
