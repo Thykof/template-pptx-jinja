@@ -53,9 +53,7 @@ class PPTXRendering:
     def _render_picture(self, shape):
         for picture in self.pictures:
             if pictures.get_hash(picture) == shape.image.sha1:
-                pictures.replace_img_slide(
-                    self.current_slide, shape, self.pictures[picture]
-                )
+                pictures.replace_img_slide(shape, self.pictures[picture])
 
     def _render_text_frame(self, text_frame):
         for paragraph in text_frame.paragraphs:
