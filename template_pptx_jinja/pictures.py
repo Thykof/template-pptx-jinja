@@ -16,7 +16,7 @@ def replace_img_slide(slide, img, img_path):
 
     imgPic = img._pic
     imgRID = imgPic.xpath('./p:blipFill/a:blip/@r:embed')[0]
-    imgPart = slide.part.related_parts[imgRID]
+    imgPart = slide.part.related_part(imgRID)
 
     with open(img_path, 'rb') as f:
         rImgBlob = f.read()
