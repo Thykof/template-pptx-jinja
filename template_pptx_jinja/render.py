@@ -25,7 +25,7 @@ class PPTXRendering:
         self.current_slide = None
         self.current_shape = None
 
-        self.message = ''
+        self.message_raw = []
 
     def process(self):
         ppt = Presentation(self.input_path)
@@ -33,7 +33,7 @@ class PPTXRendering:
             self.current_slide = slide
             self._render_slide(slide)
         ppt.save(self.output_path)
-        return self.message
+        return "\n".join(self.message_raw)
 
     def _render_slide(self, slide):
         for shape in slide.shapes:
@@ -75,9 +75,13 @@ class PPTXRendering:
         try:
             rendered = template.render(self.model)
         except exceptions.UndefinedError as error:
-            self.message += str(error) + '\n'
+            error_text = f"{error.__class__.__name__}: {error}"
+            self.message_raw.append(error_text)
         except exceptions.TemplateSyntaxError as error:
-            self.message += str(error) + \
-                '\nyou should re-write the whole {{}} tag\n'
+            error_text = (
+                f"{error.__class__.__name__}: {error}\n"
+                "you should re-write the whole {{}} tag"
+            )
+            self.message_raw.append(error_text)
         else:
             run.text = rendered
