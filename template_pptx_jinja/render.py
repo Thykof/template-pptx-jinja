@@ -1,12 +1,9 @@
 import copy
 import re
 
-from  jinja2 import exceptions, Environment
-
-
+from jinja2 import exceptions, Environment
 from pptx import Presentation
 from pptx.enum.shapes import MSO_SHAPE_TYPE
-from pptx.parts.image import Image
 from pptx.table import _Cell
 
 from template_pptx_jinja import pictures
