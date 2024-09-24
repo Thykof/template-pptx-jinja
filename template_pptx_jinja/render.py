@@ -14,8 +14,8 @@ class PPTXRendering:
 
     def __init__(self, input_path, data, output_path, env=None):
         self.input_path = input_path
-        self.model = data['model']
-        self.pictures = data.get('pictures')
+        self.model = data["model"]
+        self.pictures = data.get("pictures")
 
         self.output_path = output_path
         if env is not None:
@@ -77,7 +77,7 @@ class PPTXRendering:
                 self._remove_row(table, 0)
                 if table_data := self.model.get(table_data_key):
                     for i, row in enumerate(table_data):
-                        self._add_row(table, i)
+                        self._add_row(table, i, table_data_key)
                     self._remove_row(table, 1)
             break
 
@@ -101,14 +101,14 @@ class PPTXRendering:
             run.text = rendered
 
     @staticmethod
-    def _add_row(table, row_index):
+    def _add_row(table, row_index, table_data_key):
         new_row = copy.deepcopy(table._tbl.tr_lst[-1])
 
         for cell_index, tc in enumerate(new_row.tc_lst):
             cell = _Cell(tc, new_row.tc_lst)
             for paragraph in cell.text_frame.paragraphs:
                 for run in paragraph.runs:
-                    run.text = f"{{{{ table_data[{row_index}][{cell_index}] }}}}"
+                    run.text = f"{{{{ {table_data_key}[{row_index}][{cell_index}] }}}}"
 
         table._tbl.append(new_row)
 
@@ -116,4 +116,3 @@ class PPTXRendering:
     def _remove_row(table, row_index):
         row = list(table.rows)[row_index]
         table._tbl.remove(row._tr)
-
