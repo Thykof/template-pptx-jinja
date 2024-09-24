@@ -10,19 +10,17 @@ from template_pptx_jinja import pictures
 
 
 class PPTXRendering:
+
     def __init__(self, input_path, data, output_path, env=None):
         self.input_path = input_path
         self.model = data['model']
-        if 'pictures' in data:
-            self.pictures = data['pictures']
-        else:
-            self.pictures = None
+        self.pictures = data.get('pictures')
+
         self.output_path = output_path
         if env is not None:
             self.env = env
         else:
             self.env = Environment()
-
 
         self.current_slide = None
         self.current_shape = None
