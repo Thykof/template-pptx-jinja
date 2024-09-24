@@ -71,8 +71,8 @@ class PPTXRendering:
         self._render_text_frame(cell.text_frame)
 
     def _render_run(self, run):
-        template = self.env.from_string(str(run.text))
         try:
+            template = self.env.from_string(str(run.text))
             rendered = template.render(self.model)
         except exceptions.UndefinedError as error:
             error_text = f"{error.__class__.__name__}: {error}"
