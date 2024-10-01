@@ -21,7 +21,15 @@ def main():
                 "name": "production"
             }
         ],
-        "size": [10, 9000]
+        "size": [10, 9000],
+        "my_table_name": "My filling table",
+        "my_table": [
+            ["Hello", "World"],
+            ["Python", "Programming"],
+            ["Data", "Science"],
+            ["Machine", "Learning"],
+            ["Artificial", "Intelligence"]
+        ]
     }
     pictures = {
         "example/model.jpg": "example/image.jpg"
